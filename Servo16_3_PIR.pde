@@ -305,23 +305,6 @@ void draw() {
   drawSettingsStatus();
   drawPIRPanel();
 
-  //noFill();
-  //stroke(#FFFFE4);
-  //for (int row = 0; row < 4; row++) {
-  //  for (int col = 0; col < 4; col++) {
-  //    int x = rectX + col * (rectWidth + colSpacing);
-  //    int y = rectY + row * (rectHeight + rowSpacing);
-
-  //    int servoIndex = row * 4 + col;
-  //    if (!servoActive[servoIndex]) {
-  //      stroke(color(250, 250, 250));
-  //    } else {
-  //      stroke(#FFFFE4);
-  //    }
-  //    rect(x, y+10, rectWidth, rectHeight);
-  //  }
-  //}
-
   for (int i = 0; i < NUM_SERVOS; i++) {
     drawServoControl(i);
   }
@@ -381,16 +364,16 @@ void drawPIRPanel() {
   int indicatorSize = 20;
   int indicatorX = 1050;
   int indicatorY = 610;
-  
+
   // Pulse effect when motion detected
   if (millis() - pirMotionDetectedTime < 1000) {
     float pulse = sin((millis() - pirMotionDetectedTime) / 100.0) * 0.3 + 0.7;
     indicatorSize = (int)(indicatorSize * pulse);
   }
-  
+
   fill(pirMotionState.equals("MOTION") ? PIR_MOTION_COLOR : PIR_CLEAR_COLOR);
   ellipse(indicatorX, indicatorY + 10, indicatorSize, indicatorSize);
-  
+
   fill(TEXT_COLOR);
   textSize(12);
   text(pirMotionState, indicatorX + 15, indicatorY + 3);
@@ -398,7 +381,7 @@ void drawPIRPanel() {
   textSize(14);
   text("Status: " + (pirEnabled ? "ENABLED" : "DISABLED"), 890, 635);
   text("Auto-Play: " + (pirAutoPlayEnabled ? "ON" : "OFF"), 890, 655);
-                                                                             // ********************** Cooldown slider value *********************
+  // ********************** Cooldown slider value *********************
   text("Cooldown (ms):", 890, 675);
   pirCooldownSlider.display(true, false);  // Don't show value on slider
   fill(0);  // Black color for text
@@ -423,7 +406,7 @@ void setPIREnabled(boolean enable) {
   pirEnabled = enable;
   sequenceStatus = "PIR " + (enable ? "enabled" : "disabled");
   sequenceStatusTime = millis();
-  
+
   if (connected) {
     arduinoPort.write(enable ? "PIR:ENABLE\n" : "PIR:DISABLE\n");
   }
@@ -459,11 +442,11 @@ void drawSequenceControls() {
   text("Delay After Move (ms):", 530, 660);
   delaySlider.display();
   text(int(delaySlider.getValue()) + " ms", 817, 660);
-
+                                                            // last loaded keyframe text ***********************************
   if (!lastLoadedKeyframeFile.equals("")) {
-    textSize(12);
-    fill(100);
-    text("Loaded: " + lastLoadedKeyframeFile, 960, 630);
+    textSize(14);
+    fill(0);
+    text("Loaded: " + lastLoadedKeyframeFile, 400, 770);
   }
 
   recordButton.buttonColor = isRecording ? RECORDING_BUTTON_COLOR : RECORD_BUTTON_COLOR;
@@ -674,7 +657,7 @@ void mouseReleased() {
   }
   speedSlider.locked = false;
   delaySlider.locked = false;
-  
+
   // Update PIR cooldown if slider was dragged
   if (pirCooldownSlider.locked) {
     setPIRCooldown(int(pirCooldownSlider.getValue()));
@@ -985,7 +968,7 @@ void exportArduinoSketch(String sketchName) {
     sketchLines.add("#include <Servo.h>");
   }
   sketchLines.add("");
-  
+
   // PIR sensor configuration
   sketchLines.add("// PIR Motion Sensor Configuration");
   sketchLines.add("const int PIR_PIN = 2;  // PIR sensor input pin");
@@ -1093,7 +1076,7 @@ void exportArduinoSketch(String sketchName) {
   sketchLines.add("  Serial.begin(115200);");
   sketchLines.add("  Serial.println(\"Multi-Servo Controller Started\");");
   sketchLines.add("");
-  
+
   // PIR setup
   sketchLines.add("  // Initialize PIR sensor");
   sketchLines.add("  pinMode(PIR_PIN, INPUT);");
@@ -1434,7 +1417,7 @@ void readSerialData() {
         } else if (data.equals("PIR:MOTION_DETECTED")) {
           pirMotionState = "MOTION";
           pirMotionDetectedTime = millis();
-          
+
           if (pirAutoPlayEnabled && !isPlayingSequence && sequence.size() > 0) {
             playSequence();
             sequenceStatus = "PIR triggered sequence";
@@ -1457,7 +1440,7 @@ void readSerialData() {
         }
       }
     }
-    
+
     if (pirMotionState.equals("MOTION") && millis() - pirMotionDetectedTime > 2000) {
       pirMotionState = "CLEAR";
     }
@@ -1880,7 +1863,7 @@ void createUI() {
   speedSlider.setValue(1000);
   delaySlider = new Slider(600, 650, 150, 20, 0, 3000);
   delaySlider.setValue(500);
-  
+
   pirEnableButton = new Button(890, 700, 90, 30, "PIR: OFF", PIR_BUTTON_COLOR);
   pirAutoPlayButton = new Button(990, 700, 90, 30, "Auto: ON", color(100, 255, 100));
   pirCooldownSlider = new Slider(990, 670, 200, 20, 1000, 30000);
@@ -2096,7 +2079,7 @@ class Slider {
   void display(boolean active) {
     display(active, true);
   }
-  
+
   void display(boolean active, boolean showValue) {
     noStroke();
     fill(active ? SLIDER_COLOR : INACTIVE_SLIDER_COLOR);
