@@ -305,6 +305,23 @@ void draw() {
   drawSettingsStatus();
   drawPIRPanel();
 
+  //noFill();
+  //stroke(#FFFFE4);
+  //for (int row = 0; row < 4; row++) {
+  //  for (int col = 0; col < 4; col++) {
+  //    int x = rectX + col * (rectWidth + colSpacing);
+  //    int y = rectY + row * (rectHeight + rowSpacing);
+
+  //    int servoIndex = row * 4 + col;
+  //    if (!servoActive[servoIndex]) {
+  //      stroke(color(250, 250, 250));
+  //    } else {
+  //      stroke(#FFFFE4);
+  //    }
+  //    rect(x, y+10, rectWidth, rectHeight);
+  //  }
+  //}
+
   for (int i = 0; i < NUM_SERVOS; i++) {
     drawServoControl(i);
   }
@@ -348,12 +365,12 @@ void draw() {
     readSerialData();
   }
 }
-// ********************************************************************************************************************************************
+
 void drawPIRPanel() {
   // PIR Control Panel
   fill(230);
   stroke(150);
-  rect(880, 600, 320, 140);
+  rect(880, 600, 320, 140);                                              // ***************************************************************
 
   fill(TEXT_COLOR);
   textAlign(LEFT, TOP);
@@ -381,8 +398,8 @@ void drawPIRPanel() {
   textSize(14);
   text("Status: " + (pirEnabled ? "ENABLED" : "DISABLED"), 890, 635);
   text("Auto-Play: " + (pirAutoPlayEnabled ? "ON" : "OFF"), 890, 655);
-// ********************************************************************************************************* PIR slider value ms ***************************************
-  text("Cooldown (ms):", 890, 680);
+                                                                             // ********************** Cooldown slider value *********************
+  text("Cooldown (ms):", 890, 675);
   pirCooldownSlider.display(true, false);  // Don't show value on slider
   fill(0);  // Black color for text
   text(int(pirCooldownSlider.getValue()) + " ms", 1120, 700);
@@ -442,11 +459,11 @@ void drawSequenceControls() {
   text("Delay After Move (ms):", 530, 660);
   delaySlider.display();
   text(int(delaySlider.getValue()) + " ms", 817, 660);
-// ************************************************************************************************* Keyframe file loaded ********************************
+
   if (!lastLoadedKeyframeFile.equals("")) {
     textSize(12);
     fill(100);
-    text("Loaded: " + lastLoadedKeyframeFile, 400, 770);
+    text("Loaded: " + lastLoadedKeyframeFile, 960, 630);
   }
 
   recordButton.buttonColor = isRecording ? RECORDING_BUTTON_COLOR : RECORD_BUTTON_COLOR;
@@ -1121,10 +1138,9 @@ void exportArduinoSketch(String sketchName) {
   sketchLines.add("    bool motionDetected = digitalRead(PIR_PIN) == HIGH;");
   sketchLines.add("    ");
   sketchLines.add("    if (motionDetected) {");
-  sketchLines.add("      // Motion detected - check cooldown");
+  sketchLines.add("      // Motion detected - check if cooldown period has elapsed");
   sketchLines.add("      if (millis() - lastMotionTime >= PIR_COOLDOWN) {");
   sketchLines.add("        Serial.println(\"Motion detected - starting sequence!\");");
-  sketchLines.add("        lastMotionTime = millis();");
   sketchLines.add("        ");
   sketchLines.add("        // Execute the sequence");
   sketchLines.add("        for (int i = 0; i < NUM_KEYFRAMES; i++) {");
@@ -1135,6 +1151,18 @@ void exportArduinoSketch(String sketchName) {
   sketchLines.add("        }");
   sketchLines.add("        ");
   sketchLines.add("        Serial.println(\"Sequence complete.\");");
+  sketchLines.add("        ");
+  sketchLines.add("        // Start cooldown AFTER sequence completes");
+  sketchLines.add("        lastMotionTime = millis();");
+  sketchLines.add("        Serial.print(\"Cooldown active for \");");
+  sketchLines.add("        Serial.print(PIR_COOLDOWN);");
+  sketchLines.add("        Serial.println(\" ms\");");
+  sketchLines.add("      } else {");
+  sketchLines.add("        // Still in cooldown period");
+  sketchLines.add("        unsigned long remaining = PIR_COOLDOWN - (millis() - lastMotionTime);");
+  sketchLines.add("        Serial.print(\"Cooldown active - \");");
+  sketchLines.add("        Serial.print(remaining);");
+  sketchLines.add("        Serial.println(\" ms remaining\");");
   sketchLines.add("      }");
   sketchLines.add("    }");
   sketchLines.add("    ");
@@ -1855,7 +1883,7 @@ void createUI() {
   
   pirEnableButton = new Button(890, 700, 90, 30, "PIR: OFF", PIR_BUTTON_COLOR);
   pirAutoPlayButton = new Button(990, 700, 90, 30, "Auto: ON", color(100, 255, 100));
-  pirCooldownSlider = new Slider(990, 675, 200, 20, 1000, 30000);  // ********************************************* PIR SLIDER Size and Location ***********************************
+  pirCooldownSlider = new Slider(990, 670, 200, 20, 1000, 30000);
   pirCooldownSlider.setValue(5000);
 }
 
