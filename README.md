@@ -1,4 +1,4 @@
-# Servo16_2 added-save-sequences
+# Servo16_3 added-PIR
 # This version needs more testing!
 # Webrobotix Servo Controller Servo16_2 (Processing / Arduino)
 
