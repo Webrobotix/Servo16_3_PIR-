@@ -1,5 +1,4 @@
 # Servo16_3 added-PIR
-# This version needs more testing!
 # Webrobotix Servo Controller Servo16_3 (Processing / Arduino)
 
 This Processing sketch provides a **16-channel RC servo controller interface** with sequence recording and Arduino sketch export.  
