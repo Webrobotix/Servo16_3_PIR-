@@ -1,8 +1,8 @@
 # Servo16_3 added-PIR
-# Webrobotix Servo Controller Servo16_3 (Processing / Arduino)
+# Webrobotix Servo Controller Servo16_3_PIR (Processing / Arduino)
 
 This Processing sketch provides a **16-channel RC servo controller interface** with sequence recording and Arduino sketch export.  
-It communicates with an Arduino running the **Servo17_sketch and optionally supports the **Adafruit 16-Channel 12-bit PWM/Servo Shield**.
+It communicates with an Arduino running the **Servo18_sketch_PIR and optionally supports the **Adafruit 16-Channel 12-bit PWM/Servo Shield**.
 
 **This software is provided for educational and experimental purposes only. The author assumes no responsibility for any damage or injury resulting from its use.**
 ---
