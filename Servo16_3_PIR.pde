@@ -1681,7 +1681,7 @@ void saveKeyframesToFile() {
     return;
   }
 
-  String fileName = "keyframes_" + year() + month() + day() + "_" + hour() + minute() + second();
+  String fileName = "keyframes_" + month() + day() + year() + "_" + hour() + minute() + second();
 
   ArrayList<String> keyframeData = new ArrayList<String>();
   keyframeData.add("# Keyframe Sequence Data");
