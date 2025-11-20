@@ -200,49 +200,49 @@ Toggles between PWM Shield and Standard Servo mode for export.
 
 ---
 
-### `countActiveServos(ServoKeyframe kf)` (Lines 787-676)
+### `countActiveServos(ServoKeyframe kf)` (Lines 793-799)
 
 Counts how many servos are active in a given keyframe.
 
 ---
 
-### `toggleRecording()` (Lines 678-686)
+### `toggleRecording()` (Lines 801-809)
 
 Starts or stops sequence recording mode.
 
 ---
 
-### `addKeyframe()` (Lines 688-699)
+### `addKeyframe()` (Lines 811-822)
 
 Creates and adds a new keyframe to the sequence with current servo positions. Captures speed, delay, and active servo states.
 
 ---
 
-### `playSequence()` (Lines 701-718)
+### `playSequence()` (Lines 824-829)
 
 Starts or stops playback of the recorded sequence.
 
 ---
 
-### `clearSequence()` (Lines 720-725)
+### `clearSequence()` (Lines 843-848)
 
 Clears all keyframes from the current sequence.
 
 ---
 
-### `startSketchNaming()` (Lines 727-735)
+### `startSketchNaming()` (Lines 850-858)
 
 Initiates the Arduino sketch export dialog.
 
 ---
 
-### `updateSequencePlayback()` (Lines 737-802)
+### `updateSequencePlayback()` (Lines 860-928)
 
 Updates servo positions during sequence playback. Implements smooth movement interpolation with easing. Manages timing between keyframes.
 
 ---
 
-### `easeInOutCubic(float t)` (Lines 804-811)
+### `easeInOutCubic(float t)` (Lines 930-937)
 
 Provides cubic easing function for smooth servo movements.
 
@@ -256,7 +256,7 @@ else: return 1.0 + ((2.0 * t - 2.0)^3) / 2.0
 
 ## Arduino Sketch Export Function
 
-### `exportArduinoSketch(String sketchName)` (Lines 813-1114)
+### `exportArduinoSketch(String sketchName)` (Lines 939-1247)
 
 Generates complete Arduino code (.ino file) from recorded sequence. Supports both PWM Shield and Standard Servo implementations. Includes PIR motion sensor integration with cooldown logic.
 
