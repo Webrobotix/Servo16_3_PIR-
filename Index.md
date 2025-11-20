@@ -29,7 +29,7 @@
 
 ## Core Setup and Loop Functions
 
-### `setup()` (Lines 171-194)
+### `setup()` (Lines 242-271)
 
 Initializes the application window, UI elements, servo positions, and serial connection. Loads settings and keyframes from files. Sets all servos to inactive state on startup.
 
@@ -38,7 +38,7 @@ Initializes the application window, UI elements, servo positions, and serial con
 
 ---
 
-### `draw()` (Lines 196-252)
+### `draw()` (Lines 273-350)
 
 Main rendering loop that updates the display every frame. Handles connection checks, PIR status requests, and UI element rendering. Manages sequence playback and serial communication.
 
@@ -52,7 +52,7 @@ Main rendering loop that updates the display every frame. Handles connection che
 
 ## PIR Motion Sensor Functions
 
-### `drawPIRPanel()` (Lines 254-296)
+### `drawPIRPanel()` (Lines 352-397)
 
 Renders the PIR control panel with status indicator, buttons, and cooldown slider. Shows motion detection state with pulsing visual effect.
 
@@ -79,19 +79,19 @@ Renders the PIR control panel with status indicator, buttons, and cooldown slide
 
 ---
 
-### `requestPIRStatus()` (Lines 298-302)
+### `requestPIRStatus()` (Lines 399-403)
 
 Sends command to Arduino to retrieve current PIR sensor status.
 
 ---
 
-### `setPIREnabled(boolean enable)` (Lines 304-312)
+### `setPIREnabled(boolean enable)` (Lines 405-413)
 
 Enables or disables the PIR motion sensor. Sends enable/disable command to Arduino via serial.
 
 ---
 
-### `setPIRCooldown(int cooldown)` (Lines 314-319)
+### `setPIRCooldown(int cooldown)` (Lines 415-420)
 
 Sets the cooldown period for PIR motion detection. Updates both local variable and Arduino setting.
 
@@ -99,7 +99,7 @@ Sets the cooldown period for PIR motion detection. Updates both local variable a
 
 ## Sequence Control Functions
 
-### `drawSequenceControls()` (Lines 321-363)
+### `drawSequenceControls()` (Lines 422-462)
 
 Renders the sequence recording panel with all controls. Displays keyframe count, recording/playback status, and timing sliders.
 
@@ -132,7 +132,7 @@ Renders the sequence recording panel with all controls. Displays keyframe count,
 
 ---
 
-### `drawSequenceStatus()` (Lines 365-371)
+### `drawSequenceStatus()` (Lines 464-471)
 
 Displays temporary status messages for sequence operations (3-second duration).
 
@@ -141,7 +141,7 @@ Displays temporary status messages for sequence operations (3-second duration).
 
 ---
 
-### `drawSketchNamingDialog()` (Lines 373-392)
+### `drawSketchNamingDialog()` (Lines 473-497)
 
 Shows modal dialog for entering Arduino sketch export name. Displays target hardware configuration.
 
@@ -161,25 +161,25 @@ Shows modal dialog for entering Arduino sketch export name. Displays target hard
 
 ## Mouse and Keyboard Input Handlers
 
-### `mousePressed()` (Lines 394-556)
+### `mousePressed()` (Lines 499-652)
 
 Handles all mouse click events for buttons, sliders, and UI elements. Manages file selection pagination and dialog interactions.
 
 ---
 
-### `mouseReleased()` (Lines 558-569)
+### `mouseReleased()` (Lines 664-667)
 
 Releases all slider locks when mouse button is released. Updates PIR cooldown setting if slider was dragged.
 
 ---
 
-### `mouseDragged()` (Lines 571-585)
+### `mouseDragged()` (Lines 668-685)
 
 Updates slider positions and servo values during drag operations. Handles speed, delay, and PIR cooldown slider dragging.
 
 ---
 
-### `keyPressed()` (Lines 587-661)
+### `keyPressed()` (Lines 687-784)
 
 Processes keyboard input for text entry dialogs and shortcuts. Handles ENTER/ESC keys for dialog confirmation/cancellation.
 
@@ -194,13 +194,13 @@ Processes keyboard input for text entry dialogs and shortcuts. Handles ENTER/ESC
 
 ## Sequence Recording Functions
 
-### `togglePWMShield()` (Lines 664-668)
+### `togglePWMShield()` (Lines 787-791)
 
 Toggles between PWM Shield and Standard Servo mode for export.
 
 ---
 
-### `countActiveServos(ServoKeyframe kf)` (Lines 670-676)
+### `countActiveServos(ServoKeyframe kf)` (Lines 787-676)
 
 Counts how many servos are active in a given keyframe.
 
