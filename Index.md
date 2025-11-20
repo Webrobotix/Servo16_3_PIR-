@@ -272,23 +272,23 @@ Generates complete Arduino code (.ino file) from recorded sequence. Supports bot
 
 ## Serial Communication Functions
 
-### `checkForNewSerialPorts()` (Lines 1116-1132)
+### `checkForNewSerialPorts()` (Lines 1249-1267)
 
 Monitors for serial port disconnections and attempts reconnection.
 
 ---
 
-### `establishConnection()` (Lines 1134-1184)
+### `establishConnection()` (Lines 1269-1330)
 
 Scans available serial ports and attempts to connect to Arduino. Sends test command to verify connection.
 
 **Serial Settings:**
-- Baud Rate: `115200` (Line 1156)
+- Baud Rate: `115200` (Line 1287)
 - Timeout: 5000ms
 
 ---
 
-### `readSerialData()` (Lines 1291-1356)
+### `readSerialData()` (Lines 1378-1454)
 
 Parses incoming serial data from Arduino. Updates servo positions, limits, and PIR status. Handles motion detection events and triggers auto-play if enabled.
 
@@ -308,7 +308,7 @@ Parses incoming serial data from Arduino. Updates servo positions, limits, and P
 
 ## Servo Control Functions
 
-### `centerServo(int servoNum)` (Lines 1186-1190)
+### `centerServo(int servoNum)` (Lines 1332-1336)
 
 Moves specified servo to its center position.
 
