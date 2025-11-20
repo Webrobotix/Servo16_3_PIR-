@@ -314,7 +314,7 @@ Moves specified servo to its center position.
 
 ---
 
-### `setCenterPosition(int servoNum)` (Lines 1192-1197)
+### `setCenterPosition(int servoNum)` (Lines 1338-1343)
 
 Sets the center position for a servo to its current position.
 
@@ -322,7 +322,7 @@ Sets the center position for a servo to its current position.
 
 ---
 
-### `setMinLimit(int servoNum)` (Lines 1199-1205)
+### `setMinLimit(int servoNum)` (Lines 1345-1351)
 
 Sets the minimum angle limit for a servo.
 
@@ -330,7 +330,7 @@ Sets the minimum angle limit for a servo.
 
 ---
 
-### `setMaxLimit(int servoNum)` (Lines 1207-1213)
+### `setMaxLimit(int servoNum)` (Lines 1353-1359)
 
 Sets the maximum angle limit for a servo.
 
@@ -338,7 +338,7 @@ Sets the maximum angle limit for a servo.
 
 ---
 
-### `resetLimits(int servoNum)` (Lines 1215-1223)
+### `resetLimits(int servoNum)` (Lines 1361-1369)
 
 Resets servo to default limits (0-180°) and center (90°).
 
@@ -346,15 +346,15 @@ Resets servo to default limits (0-180°) and center (90°).
 
 ---
 
-### `updateServoPosition(int servoNum, int position)` (Lines 1225-1230)
+### `updateServoPosition(int servoNum, int position)` (Lines 1371-1376)
 
 Sends position command to Arduino for specified servo.
 
-**Command:** `S:servoNum:position` (Line 1228)
+**Command:** `S:servoNum:position` (Line 1374)
 
 ---
 
-### `toggleServoActive(int servoNum)` (Lines 1360-1365)
+### `toggleServoActive(int servoNum)` (Lines 1463-1477)
 
 Toggles the active/inactive state of a servo.
 
@@ -370,7 +370,7 @@ Activates all servos at once.
 
 ---
 
-### `setAllServosInactive()` (Lines 1375-1381)
+### `setAllServosInactive()` (Lines 1470-1477)
 
 Deactivates all servos at once.
 
@@ -378,7 +378,7 @@ Deactivates all servos at once.
 
 ---
 
-### `manualReconnect()` (Lines 1383-1396)
+### `manualReconnect()` (Lines 1488-1501)
 
 Manually triggers serial port reconnection.
 
@@ -410,19 +410,19 @@ Scans data directory and builds list of saved settings or keyframe files.
 
 ---
 
-### `startFileNaming()` (Lines 1418-1424)
+### `startFileNaming()` (Lines 1524-1531)
 
 Initiates save dialog (uses existing filename or prompts for new one).
 
 ---
 
-### `startFileNamingAs()` (Lines 1426-1429)
+### `startFileNamingAs()` (Lines 1533-1536)
 
 Initiates "Save As" dialog with optional pre-filled filename.
 
 ---
 
-### `startFileSelection(String operation)` (Lines 1431-1447)
+### `startFileSelection(String operation)` (Lines 1538-1550)
 
 Shows file selection dialog for load/delete operations.
 
