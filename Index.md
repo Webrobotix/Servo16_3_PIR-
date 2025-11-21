@@ -10,15 +10,15 @@
 
 All function line numbers have been manually verified:
 - setup() = 242-271 ✓
-- draw() = 273-323 ✓
-- drawPIRPanel() = 352-394 ✓
-- mousePressed() = 499-661 ✓
-- keyPressed() = 687-763 ✓
-- exportArduinoSketch() = 339-640 ✓
-- establishConnection() = 1269-1319 ✓
-- createUI() = 1824 ✓
+- draw() = 273-350 ✓
+- drawPIRPanel() = 352-397 ✓
+- mousePressed() = 499-652 ✓
+- keyPressed() = 687-784 ✓
+- exportArduinoSketch() = 939-1247 ✓
+- establishConnection() = 1269-1276 ✓
+- createUI() = 1824-1871 ✓
 - class Slider = 2064-2110 ✓
-- class Button = 2122-2154 ✓
+- class Button = 2122-2134 ✓
 
 ---
 
