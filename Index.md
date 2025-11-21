@@ -352,4 +352,4 @@ PIR_STATUS_REQUEST_INTERVAL = 2000ms
 
 *Webrobotix 2025 - v3.0 with PIR*
 *Processing 3.x+ - 2,154 lines Tested with Processing 4.4.0*
-*All line numbers manually verified*
+
