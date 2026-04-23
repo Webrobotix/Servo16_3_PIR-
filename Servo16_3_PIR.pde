@@ -1,7 +1,7 @@
 /*
 MIT License
  
- Copyright (c) 2024 Webrobotix
+ Copyright (c) 2025 Webrobotix
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -277,7 +277,7 @@ void draw() {
   text("Servo16 + PIR", WINDOW_WIDTH - 700, 15);
   textSize(16);
   textAlign(RIGHT, TOP);
-  text("Webrobotix 2024", WINDOW_WIDTH - 5, 780);
+  text("Webrobotix 2025", WINDOW_WIDTH - 5, 780);
 
   if (millis() - lastConnectionCheck > CONNECTION_CHECK_INTERVAL) {
     checkForNewSerialPorts();
